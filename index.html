@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" /> -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
@@ -27,8 +28,10 @@
                     <option>English</option>
                     <option>Japanese</option>
                     <option>Italian</option>
+                    <!-- <input class="genre" placeholder="Enter genre" name="genre" id="searchBox" type="text"></input>
+                    <button type="button" class="submit btn" id="submit">Submit</button> -->
                 </select>
-                <button type="submit" class="flex btn btn-info btn-wide mt-3 ml-3">Search</button>
+                <button type="submit" class="flex btn btn-info btn-wide mt-3 ml-3" id="submit">Search</button>
             </form>
             <div class="divider"></div>
             <section id="book-list-container"></section>
@@ -122,4 +125,10 @@
             <div id="extra-books-container" class="grid custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">content</div>
         </div>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/js/script.js"></script>
+
 </html>
