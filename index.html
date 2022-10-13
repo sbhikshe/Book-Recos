@@ -119,7 +119,24 @@
                 </div>
             </div> 
             <div class="divider"></div>  
-            <div id="extra-books-container" class="grid custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">content</div>
+            <div id="extra-books-container" class="flex custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">
+                <div id="extra-book-1-container" class="flex flex-col w-full bg-accent p-2 m-2">
+                    <div id="extra-book-1-title-author-container">
+                        <p class="text-2xl ml-2">Title: <span id="extra-book-1-title" class="mr-5"></span> Author: <span id="extra-book-1-author"></span></p>
+                    </div>
+                    <div>
+                        <p class="text-lg ml-2"><span id="extra-book-1-desc">Description: </span></p>
+                    </div>
+                    <section class="inline-flex ml-1 mt-2">
+                        <div class="flex card-actions justify-start">
+                            <button id="extra-book-1-save" class="btn btn-primary">Save Book</button>
+                        </div>
+                        <div class="flex card-actions justify-start ml-3">
+                            <button id="extra-book-1-see-more" class="btn btn-primary">See More</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
     </main>
 </html>
