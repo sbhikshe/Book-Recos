@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <!-- consider adding a theme dropdown -->
 <html lang="en" data-theme="retro">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" /> -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <title>Book Reco's</title>
 </head>
+
 <body>
     <header>
         <div class="navbar-center bg-secondary h-12 flex justify-center items-center">
@@ -37,12 +40,14 @@
             <div class="divider"></div>
             <section id="book-list-container"></section>
         </aside>
-        
+
         <!-- main book cover / best sellers container -->
         <div id="main-containers" class="flex flex-col w-10/12 content-end mr-10 mt-10 h-full">
-            <div id="book-covers-container" class="custom-large-height card bg-base-300 rounded-box flex flex-row justify-evenly">
+            <div id="book-covers-container"
+                class="custom-large-height card bg-base-300 rounded-box flex flex-row justify-evenly">
                 <div id="book-cover-container-1" class="card card-compact w-96 m-3 bg-base-100 shadow-xl">
-                    <figure><img id="book-cover-1" src="https://placeimg.com/400/300/nature" alt="Book Cover" /></figure>
+                    <figure><img id="book-cover-1" src="https://placeimg.com/400/300/nature" alt="Book Cover" />
+                    </figure>
                     <div class="card-body">
                         <h2 id="book-title-1" class="card-title font-bold">Title!</h2>
                         <h3 id="book-author-1" class="text-lg font-semibold">Author</h3>
@@ -121,9 +126,10 @@
                         </section>
                     </div>
                 </div>
-            </div> 
-            <div class="divider"></div>  
-            <div id="extra-books-container" class="flex custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">
+            </div>
+            <div class="divider"></div>
+            <div id="extra-books-container"
+                class="flex custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">
                 <div id="extra-book-1-container" class="flex flex-col w-full bg-accent p-2 m-2">
                     <div id="extra-book-1-title-author-container">
                         <p class="text-3xl ml-2">Title: <span id="extra-book-1-title" class="mr-5"></p>
@@ -179,4 +185,9 @@
             </div>
         </div>
     </main>
-</html>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/js/script.js"></script>
+    </html>
