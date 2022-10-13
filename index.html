@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" /> -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
 
     <title>Book Reco's</title>
 </head>
@@ -17,7 +18,7 @@
             <h1 class="normal-case text-xl">daisyUI</h1>
         </div>
     </header>
-    <main class="flex flex-row">
+    <main class="flex h-screen">
         <!-- aside should be 2/12 col -->
         <aside class="flex w-2/12 ml-10 mt-10">
             <form>
@@ -31,12 +32,12 @@
                 <button type="submit">Search</button>
             </form>
         </aside>
-
+        
         <!-- main book cover / best sellers container -->
-        <div class="flex flex-col w-11/12 content-end mr-10 mt-10">
-            <div class="grid h-96 card bg-base-300 rounded-box place-items-center">content</div> 
-            <div class="divider"></div> 
-            <div class="grid h-96 card bg-base-300 rounded-box place-items-center">content</div>
+        <div id="main-containers" class="flex flex-col w-10/12 content-end mr-10 mt-10 h-full">
+            <div id="book-covers-container" class="grid custom-large-height card bg-base-300 rounded-box place-items-center">content</div> 
+            <div class="divider"></div>  
+            <div id="extra-books-container" class="grid custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">content</div>
         </div>
     </main>
 </html>
