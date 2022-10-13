@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" /> -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
@@ -18,13 +17,13 @@
     <header>
         <div class="navbar-center bg-secondary h-28 flex justify-center items-center">
             <!-- TODO: Change header to logo -->
-            <h1 class="normal-case"><span class="text-8xl">B<span class="text-6xl">❤️🎯</span>K </span><span class="text-4xl">Reco’s</span> </h1>
+            <h1 class="normal-case mb-5"><span class="text-8xl">B<span class="text-6xl">❤️🎯</span>K </span><span class="text-6xl">Reco’s</span> </h1>
         </div>
     </header>
     <main class="flex">
         <!-- aside should be 2/12 col -->
         <!-- TODO: Create header of current genre (or best sellers) -->
-        <aside class="flex flex-col w-2/12 ml-10 mt-10">
+        <aside class="flex flex-col w-4/12 ml-10 mt-5">
             <form class="flex flex-col content-start card bg-base-300 rounded-box h-40 w-96">
                 <label class="flex text-xl self-start font-semibold mt-1 ml-3">Search for books:</label>
                 <select class="select select-info justify-start w-full max-w-xs bg-info-content text-xl mt-2 ml-3">
@@ -42,7 +41,9 @@
         </aside>
 
         <!-- main book cover / best sellers container -->
-        <div id="main-containers" class="flex flex-col w-10/12 content-end mr-10 mt-10 h-full">
+
+        <div id="main-containers" class="flex flex-col w-8/12 mr-10 mt-5 h-full">
+            <h1></h1>
             <div id="book-covers-container"
                 class="custom-large-height card bg-base-300 rounded-box flex flex-row justify-evenly">
                 <div id="book-cover-container-1" class="card card-compact w-96 m-3 bg-base-100 shadow-xl">
@@ -128,8 +129,7 @@
                 </div>
             </div>
             <div class="divider"></div>
-            <div id="extra-books-container"
-                class="flex custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">
+            <div id="extra-books-container" class="flex custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">
                 <div id="extra-book-1-container" class="flex flex-col w-full bg-accent p-2 m-2">
                     <div id="extra-book-1-title-author-container">
                         <p class="text-3xl ml-2">Title: <span id="extra-book-1-title" class="mr-5"></p>
