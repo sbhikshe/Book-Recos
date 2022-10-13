@@ -53,27 +53,27 @@ var bookContainerEls = [book1, book2, book3, book4, book5];
 
 function getBestSellers() {
 
-  //var requestUrl = "https://api.nytimes.com/svc/books/v3/reviews.json?author=barack+obama&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
-  //var requestUrl = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?age_group=8&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
-  var requestUrl = "https://api.nytimes.com/svc/books/v3/lists/overview.json?published_date=2022-10-01&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
+    //var requestUrl = "https://api.nytimes.com/svc/books/v3/reviews.json?author=barack+obama&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
+    //var requestUrl = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?age_group=8&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
+    var requestUrl = "https://api.nytimes.com/svc/books/v3/lists/overview.json?published_date=2022-10-01&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
 
-  fetch(requestUrl)
-  .then(function(response){
-    response.json(). then(function(data){
-      console.log(data);
+    fetch(requestUrl)
+        .then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
 
-      /* for best-seller request, use this */
-      //searchResultsTitleEl.textContent = data.results[0].author;
-      //searchResultsAuthorEl.textContent = data.results[0].title;
-      //searchResultsDescriptionEl.textContent = data.results[0].description;
+                /* for best-seller request, use this */
+                //searchResultsTitleEl.textContent = data.results[0].author;
+                //searchResultsAuthorEl.textContent = data.results[0].title;
+                //searchResultsDescriptionEl.textContent = data.results[0].description;
 
-      displayBestSellers(data);
-      /* for best seller lists request with published_date */
-      //var bookList = data.results.lists[0].books;
+                displayBestSellers(data);
+                /* for best seller lists request with published_date */
+                //var bookList = data.results.lists[0].books;
 
-    })
-  });
-  
+            })
+        });
+
 }
 
 function displayBestSellers(data) {
@@ -144,39 +144,54 @@ book4.moreBtnEl.addEventListener('click', handleMoreBtns);
 book5.moreBtnEl.addEventListener('click', handleMoreBtns);
 
 
-// var genreSearch = $("#searchBox");
-
-// $('#submit').on('click', function (event) {
-//     event.preventDefault();
-
-//     genreEntry = genreSearch.val().toUpperCase().trim();
+var genreSearchEntry = $("#genreSearch");
 
 
-//     var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+$('#submit').on('click', function (event) {
+    event.preventDefault();
+    randomPicks();
+
+  });
+  
+function randomPicks() {
+
+  var genreEntry = genreSearchEntry.val();
+  var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+
+  fetch(requestUrl)
+    .then(function (response) {
+      console.log(response);
+      if (response.status === 200) {
+      }
+      return response.json();
 
 
+      }).then(function (dataB) {
+        console.log(dataB); 
+        displayRandomPicks(dataB);
+                    
+      });
 
-//     function getApi(requestUrl) {
-//         fetch(requestUrl)
-//             .then(function (response) {
-//                 console.log(response);
-//                 if (response.status === 200) {
-//                 }
-//                 return response.json();
+}
 
+function displayRandomPicks(dataB) {
 
-//             }).then(function (data) {
-//                 // console.log(data);
+  var yourBooks = [];
 
-//                 var yourBooks = [];
+  for (var i = 0; i < 5; i++) {
+      yourBooks[i] = dataB.items[Math.floor(Math.random() * dataB.items.length)];
+      console.log(yourBooks);
 
-//                 for (var i = 0; i < 5; i++) {
-//                     yourBooks = data.items[Math.floor(Math.random() * data.items.length)];
-//                     console.log(yourBooks);
-//                 }
+      console.log(bookContainerEls[i].imgEl);
+      bookContainerEls[i].imgEl.src = yourBooks[i].volumeInfo.imageLinks.thumbnail;
 
-//             });
-//     }
+      console.log(bookContainerEls[i].titleEl);
+      bookContainerEls[i].titleEl.textContent = yourBooks[i].volumeInfo.title;
 
-//     getApi(requestUrl);
-// });
+      console.log(bookContainerEls[i].authorEl);
+      bookContainerEls[i].authorEl.textContent =yourBooks[i].volumeInfo.author;
+
+      console.log(bookContainerEls[i].summaryEl);
+      bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
+    }
+}
