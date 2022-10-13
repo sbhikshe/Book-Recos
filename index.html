@@ -1,0 +1,50 @@
+<!-- Google Books API testing -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <title>Testing</title>
+</head>
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:science&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+    
+
+
+    function getApi(requestUrl) {
+  fetch(requestUrl)
+    .then(function (response) {
+      console.log(response);
+      if (response.status === 200) {
+      }
+      return response.json();
+
+
+  }).then(function(data){
+    // console.log(data);
+    
+    var yourBooks=[];
+
+    for (var i = 0; i < 5; i++){
+        yourBooks= data.items[Math.floor(Math.random() * data.items.length)];
+        console.log(yourBooks);
+      }
+
+  });
+}
+
+getApi(requestUrl);
+</script>
+
+
+
+</html>
