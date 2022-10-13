@@ -1,51 +1,47 @@
-//var bestSellersUlEl = $('bestSellers');
-
-//var bookCoverEls = [$("#bookcover1"), $("#bookcover2"), $("#bookcover3"), $("#bookcover4"), $("#bookcover5")];
-//var bookLiEls = [$("#book1"), $("#book2"), $("#book3"), $("#book4"), $("#book5")];
 
 var book1 = {
-  titleEl: $document.querySelector("#book-title-1"),
-  authorEl: $document.querySelector("#book-author-1"),
-  summaryEl: $document.querySelector("#book-desc-1"),
-  imgEl: $document.querySelector("#book-cover-1"),
-  saveBtnEl: $document.querySelector("#book-save-1"),
-  moreBtnEl: $document.querySelector("#book-see-more-1")
+  titleEl: document.querySelector("#book-title-1"),
+  authorEl: document.querySelector("#book-author-1"),
+  summaryEl: document.querySelector("#book-desc-1"),
+  imgEl: document.querySelector("#book-cover-1"),
+  saveBtnEl: document.querySelector("#book-save-1"),
+  moreBtnEl: document.querySelector("#book-see-more-1")
 };
 
 var book2 = {
-  titleEl: $document.querySelector("#book-title-2"),
-  authorEl: $document.querySelector("#book-author-2"),
-  summaryEl: $document.querySelector("#book-desc-2"),
-  imgEl: $document.querySelector("#book-cover-2"),
-  saveBtnEl: $document.querySelector("#book-save-2"),
-  moreBtnEl: $document.querySelector("#book-see-more-2")
+  titleEl: document.querySelector("#book-title-2"),
+  authorEl: document.querySelector("#book-author-2"),
+  summaryEl: document.querySelector("#book-desc-2"),
+  imgEl: document.querySelector("#book-cover-2"),
+  saveBtnEl: document.querySelector("#book-save-2"),
+  moreBtnEl: document.querySelector("#book-see-more-2")
 };
 
 var book3 = {
-  titleEl: $document.querySelector("#book-title-3"),
-  authorEl: $document.querySelector("#book-author-3"),
-  summaryEl: $document.querySelector("#book-desc-3"),
-  imgEl: $document.querySelector("#book-cover-3"),
-  saveBtnEl: $document.querySelector("#book-save-3"),
-  moreBtnEl: $document.querySelector("#book-see-more-3")
+  titleEl: document.querySelector("#book-title-3"),
+  authorEl: document.querySelector("#book-author-3"),
+  summaryEl: document.querySelector("#book-desc-3"),
+  imgEl: document.querySelector("#book-cover-3"),
+  saveBtnEl: document.querySelector("#book-save-3"),
+  moreBtnEl: document.querySelector("#book-see-more-3")
 };
 
 var book4 = {
-  titleEl: $document.querySelector("#book-title-4"),
-  authorEl: $document.querySelector("#book-author-4"),
-  summaryEl: $document.querySelector("#book-desc-4"),
-  imgEl: $document.querySelector("#book-cover-4"),
-  saveBtnEl: $document.querySelector("#book-save-4"),
-  moreBtnEl: $document.querySelector("#book-see-more-4")
+  titleEl: document.querySelector("#book-title-4"),
+  authorEl: document.querySelector("#book-author-4"),
+  summaryEl: document.querySelector("#book-desc-4"),
+  imgEl: document.querySelector("#book-cover-4"),
+  saveBtnEl: document.querySelector("#book-save-4"),
+  moreBtnEl: document.querySelector("#book-see-more-4")
 };
 
 var book5 = {
-  titleEl: $document.querySelector("#book-title-5"),
-  authorEl: $document.querySelector("#book-author-5"),
-  summaryEl: $document.querySelector("#book-desc-5"),
-  imgEl: $document.querySelector("#book-cover-5"),
-  saveBtnEl: $document.querySelector("#book-save-5"),
-  moreBtnEl: $document.querySelector("#book-see-more-5")
+  titleEl: document.querySelector("#book-title-5"),
+  authorEl: document.querySelector("#book-author-5"),
+  summaryEl: document.querySelector("#book-desc-5"),
+  imgEl: document.querySelector("#book-cover-5"),
+  saveBtnEl: document.querySelector("#book-save-5"),
+  moreBtnEl: document.querySelector("#book-see-more-5")
 };
 
 var bookContainerEls = [book1, book2, book3, book4, book5];
@@ -66,7 +62,6 @@ function getBestSellers() {
       //searchResultsAuthorEl.textContent = data.results[0].title;
       //searchResultsDescriptionEl.textContent = data.results[0].description;
 
-      createDisplayForBestSellers();
       displayBestSellers(data);
       /* for best seller lists request with published_date */
       //var bookList = data.results.lists[0].books;
@@ -76,12 +71,8 @@ function getBestSellers() {
   
 }
 
-function createDisplayForBestSellers() {
-  // Do this in HTML/CSS
-}
-
 function displayBestSellers(data) {
-  var numLists = data.results.lists.length;
+  var numListsLength = data.results.lists.length;
   var listChoice;
   var bookList;
   var bookChoice;
@@ -90,7 +81,7 @@ function displayBestSellers(data) {
   for (var i = 0; i < 5; i++) {
 
     // randomize from among the lists returned
-    listChoice = Math.floor(Math.random() * numLists); 
+    listChoice = Math.floor(Math.random() * numListsLength); 
     bookList = data.results.lists[listChoice].books;
     bookChoice = Math.floor(Math.random() * bookList.length);
 
@@ -126,11 +117,17 @@ function displayBestSellers(data) {
    summaryEl.text(bookList[bookChoice].description);
    */
 
-   bookContainerEls[i].imgEl.attr("src", bookList[bookChoice].book_image);
+   console.log(bookContainerEls[i].imgEl);
+   bookContainerEls[i].imgEl.src = bookList[bookChoice].book_image;
 
-   bookContainerEls[i].titleEl.text(bookList[bookChoice].title);
-   bookList[bookChoice].authorEl .text(bookList[bookChoice].author);
-   bookList[bookChoice].summaryEl.text(bookList[bookChoice].description);
+   console.log(bookContainerEls[i].titleEl);
+   bookContainerEls[i].titleEl.textContent = bookList[bookChoice].title;
+
+   console.log(bookContainerEls[i].authorEl);
+   bookContainerEls[i].authorEl.textContent = bookList[bookChoice].author;
+
+   console.log(bookContainerEls[i].summaryEl);
+   bookContainerEls[i].summaryEl.textContent = bookList[bookChoice].description;
 
   
   }
@@ -138,3 +135,39 @@ function displayBestSellers(data) {
 }
 
 $('document').ready(getBestSellers);
+// var genreSearch = $("#searchBox");
+
+// $('#submit').on('click', function (event) {
+//     event.preventDefault();
+
+//     genreEntry = genreSearch.val().toUpperCase().trim();
+
+
+//     var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+
+
+
+//     function getApi(requestUrl) {
+//         fetch(requestUrl)
+//             .then(function (response) {
+//                 console.log(response);
+//                 if (response.status === 200) {
+//                 }
+//                 return response.json();
+
+
+//             }).then(function (data) {
+//                 // console.log(data);
+
+//                 var yourBooks = [];
+
+//                 for (var i = 0; i < 5; i++) {
+//                     yourBooks = data.items[Math.floor(Math.random() * data.items.length)];
+//                     console.log(yourBooks);
+//                 }
+
+//             });
+//     }
+
+//     getApi(requestUrl);
+// });
