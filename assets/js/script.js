@@ -137,55 +137,19 @@ function displayBestSellers(data) {
 $('document').ready(getBestSellers);
 
 
-// var genreSearch = $("#searchBox");
-
-// $('#submit').on('click', function (event) {
-//     event.preventDefault();
-
-//     genreEntry = genreSearch.val().toUpperCase().trim();
-
-
-//     var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
-
-
-
-//     function getApi(requestUrl) {
-//         fetch(requestUrl)
-//             .then(function (response) {
-//                 console.log(response);
-//                 if (response.status === 200) {
-//                 }
-//                 return response.json();
-
-
-//             }).then(function (data) {
-//                 // console.log(data);
-
-//                 var yourBooks = [];
-
-//                 for (var i = 0; i < 5; i++) {
-//                     yourBooks = data.items[Math.floor(Math.random() * data.items.length)];
-//                     console.log(yourBooks);
-//                 }
-
-//             });
-//     }
-
-//     getApi(requestUrl);
-// });
 
 var genreSearchEntry = $("#genreSearch");
 
 
 $('#submit').on('click', function (event) {
-        event.preventDefault();
-        randomPicks();
+    event.preventDefault();
+    randomPicks();
 
 });
 
 function randomPicks() {
 
-    genreEntry = genreSearchEntry.val();
+    var genreEntry = genreSearchEntry.val();
     var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
 
     fetch(requestUrl)
@@ -196,21 +160,35 @@ function randomPicks() {
             return response.json();
 
 
-        }).then(function (data) {
-            // console.log(data);
-
-            var yourBooks = [];
-
-            for (var i = 0; i < 5; i++) {
-                yourBooks = data.items[Math.floor(Math.random() * data.items.length)];
-                console.log(yourBooks);
-            }
-
+        }).then(function (dataB) {
+            console.log(dataB); 
+            displayRandomPicks(dataB);
+                    
         });
 
 }
 
 
-function displayRandomPicks() {
+function displayRandomPicks(dataB) {
 
+    var yourBooks = [];
+
+    for (var i = 0; i < 5; i++) {
+        yourBooks[i] = dataB.items[Math.floor(Math.random() * dataB.items.length)];
+        console.log(yourBooks);
+
+
+
+        console.log(bookContainerEls[i].imgEl);
+        bookContainerEls[i].imgEl.src = yourBooks[i].volumeInfo.imageLinks.thumbnail;
+
+        console.log(bookContainerEls[i].titleEl);
+        bookContainerEls[i].titleEl.textContent = yourBooks[i].volumeInfo.title;
+
+        console.log(bookContainerEls[i].authorEl);
+        bookContainerEls[i].authorEl.textContent =yourBooks[i].volumeInfo.author;
+
+        console.log(bookContainerEls[i].summaryEl);
+        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
+    }
 }
