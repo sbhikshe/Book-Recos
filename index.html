@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- consider adding a theme dropdown -->
+<html lang="en" data-theme="retro">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+    <title>Book Reco's</title>
+</head>
+<body>
+    <header>
+        <div class="navbar-center bg-secondary h-12 flex justify-center items-center">
+            <h1 class="normal-case text-xl">daisyUI</h1>
+        </div>
+    </header>
+    <main class="flex">
+        <!-- aside should be 2/12 col -->
+        <aside class="flex flex-col w-2/12 ml-10 mt-10">
+            <form class="flex flex-col content-start card bg-base-300 rounded-box h-40 w-96">
+                <label class="flex text-xl self-start font-semibold mt-1 ml-3">Search for books:</label>
+                <select class="select select-info justify-start w-full max-w-xs bg-info-content text-xl mt-2 ml-3">
+                    <option disabled selected>Select genre</option>
+                    <option>English</option>
+                    <option>Japanese</option>
+                    <option>Italian</option>
+                </select>
+                <button type="submit" class="flex btn btn-info btn-wide mt-3 ml-3">Search</button>
+            </form>
+            <div class="divider"></div>
+            <section id="book-list-container"></section>
+        </aside>
+        
+        <!-- main book cover / best sellers container -->
+        <div id="main-containers" class="flex flex-col w-10/12 content-end mr-10 mt-10 h-full">
+            <div id="book-covers-container" class="custom-large-height card bg-base-300 rounded-box flex flex-row justify-evenly">
+                <div id="book-cover-container-1" class="card card-compact w-96 m-3 bg-base-100 shadow-xl">
+                    <figure><img id="book-cover-1" src="https://placeimg.com/400/300/nature" alt="Book Cover" /></figure>
+                    <div class="card-body">
+                        <h2 id="book-title-1" class="card-title font-bold">Title!</h2>
+                        <h3 id="book-author-1" class="text-lg font-semibold">Author</h3>
+                        <p id="book-desc-1">If a dog chews shoes whose shoes does he choose?</p>
+                        <section class="inline-flex justify-between">
+                            <div class="flex card-actions justify-start">
+                                <button id="book-save-1" class="btn btn-primary">Save Book</button>
+                            </div>
+                            <div class="flex card-actions justify-end">
+                                <button id="book-see-more-1" class="btn btn-primary">See More</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div id="book-cover-container-2" class="card card-compact w-96 m-3 bg-base-100 shadow-xl">
+                    <figure><img id="book-cover-2" src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                    <div class="card-body">
+                        <h2 id="book-title-2" class="card-title font-bold">Title!</h2>
+                        <h3 id="book-author-2" class="text-lg font-semibold">Author</h3>
+                        <p id="book-desc-2">If a dog chews shoes whose shoes does he choose?</p>
+                        <section class="inline-flex justify-between">
+                            <div class="flex card-actions justify-start">
+                                <button id="book-save-2" class="btn btn-primary">Save Book</button>
+                            </div>
+                            <div class="flex card-actions justify-end">
+                                <button id="book-see-more-2" class="btn btn-primary">See More</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div id="book-cover-container-3" class="card card-compact w-96 m-3 bg-base-100 shadow-xl">
+                    <figure><img id="book-cover-3" src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                    <div class="card-body">
+                        <h2 id="book-title-3" class="card-title">Title!</h2>
+                        <h3 id="book-author-3">Author</h3>
+                        <p id="book-desc-3">If a dog chews shoes whose shoes does he choose?</p>
+                        <section class="inline-flex justify-between">
+                            <div class="flex card-actions justify-start">
+                                <button id="book-save-3" class="btn btn-primary">Save Book</button>
+                            </div>
+                            <div class="flex card-actions justify-end">
+                                <button id="book-see-more-3" class="btn btn-primary">See More</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div id="book-cover-container-4" class="card card-compact w-96 m-3 bg-base-100 shadow-xl">
+                    <figure><img id="book-cover-4" src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                    <div class="card-body">
+                        <h2 id="book-title-4" class="card-title">Title!</h2>
+                        <h3 id="book-author-4">Author</h3>
+                        <p id="book-desc-4">If a dog chews shoes whose shoes does he choose?</p>
+                        <section class="inline-flex justify-between">
+                            <div class="flex card-actions justify-start">
+                                <button id="book-save-4" class="btn btn-primary">Save Book</button>
+                            </div>
+                            <div class="flex card-actions justify-end">
+                                <button id="book-see-more-4" class="btn btn-primary">See More</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div id="book-cover-container-5" class="card card-compact w-96 m-3 bg-base-100 shadow-xl">
+                    <figure><img id="book-cover-5" src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                    <div class="card-body">
+                        <h2 id="book-title-5" class="card-title">Title!</h2>
+                        <h3 id="book-author-5">Author</h3>
+                        <p id="book-desc-5">If a dog chews shoes whose shoes does he choose?</p>
+                        <section class="inline-flex justify-between">
+                            <div class="flex card-actions justify-start">
+                                <button id="book-save-5" class="btn btn-primary">Save Book</button>
+                            </div>
+                            <div class="flex card-actions justify-end">
+                                <button id="book-see-more-5" class="btn btn-primary">See More</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div> 
+            <div class="divider"></div>  
+            <div id="extra-books-container" class="grid custom-medium-height card bg-base-300 rounded-box place-items-center mb-10">content</div>
+        </div>
+    </main>
+</html>
