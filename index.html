@@ -15,36 +15,53 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+
+<main>
+    <input class="genre" placeholder="Enter genre" name="genre" id="searchBox" type="text"></input>
+    <button type="button" class="submit btn" id="submit">Submit</button>
+</main>
+
+
+
 <script>
-    var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:science&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
-    
+
+    var genreSearch = $("#searchBox");
+
+    $('#submit').on('click', function (event) {
+        event.preventDefault();
+
+        genreEntry = genreSearch.val().toUpperCase().trim();
 
 
-    function getApi(requestUrl) {
-  fetch(requestUrl)
-    .then(function (response) {
-      console.log(response);
-      if (response.status === 200) {
-      }
-      return response.json();
+        var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
 
 
-  }).then(function(data){
-    // console.log(data);
-    
-    var yourBooks=[];
 
-    for (var i = 0; i < 5; i++){
-        yourBooks= data.items[Math.floor(Math.random() * data.items.length)];
-        console.log(yourBooks);
-      }
+        function getApi(requestUrl) {
+            fetch(requestUrl)
+                .then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                    }
+                    return response.json();
 
-  });
-}
 
-getApi(requestUrl);
+                }).then(function (data) {
+                    // console.log(data);
+
+                    var yourBooks = [];
+
+                    for (var i = 0; i < 5; i++) {
+                        yourBooks = data.items[Math.floor(Math.random() * data.items.length)];
+                        console.log(yourBooks);
+                    }
+
+                });
+        }
+
+        getApi(requestUrl);
+    });
 </script>
-
 
 
 </html>
