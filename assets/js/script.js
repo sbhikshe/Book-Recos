@@ -156,9 +156,9 @@ $('#submit').on('click', function (event) {
 function randomPicks() {
 
   var genreEntry = genreSearchEntry.val();
-  var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+  var requestUrlBook = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&orderBy=newest&printType=books&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
 
-  fetch(requestUrl)
+  fetch(requestUrlBook)
     .then(function (response) {
       console.log(response);
       if (response.status === 200) {
@@ -177,11 +177,18 @@ function randomPicks() {
 function displayRandomPicks(dataB) {
 
   var yourBooks = [];
+  var newBook;
 
   for (var i = 0; i < 5; i++) {
-      yourBooks[i] = dataB.items[Math.floor(Math.random() * dataB.items.length)];
-      console.log(yourBooks);
+      newBook = dataB.items[Math.floor(Math.random() * dataB.items.length)];
 
+      if(yourBooks.includes(newBook)){
+        i = i-1;
+      }else{
+        yourBooks[i] = newBook;
+      }
+
+     
       console.log(bookContainerEls[i].imgEl);
       bookContainerEls[i].imgEl.src = yourBooks[i].volumeInfo.imageLinks.thumbnail;
 
@@ -192,6 +199,11 @@ function displayRandomPicks(dataB) {
       bookContainerEls[i].authorEl.textContent =yourBooks[i].volumeInfo.author;
 
       console.log(bookContainerEls[i].summaryEl);
-      bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
+      if(yourBooks[i].volumeInfo.description.length > 500){
+        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description.substring(0, 500) + '...';
+      }else {
+        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
+      }
+      
     }
 }
