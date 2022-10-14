@@ -133,6 +133,14 @@ function displayBestSellers(data) {
 
 function handleSaveBtns(event) {
   console.log("handleSaveBtns: " + event.target);
+  for (var i = 0; i < 5; i++) {
+    if (bookContainerEls[i].saveBtnEl == event.target) {
+      console.log(bookContainerEls[i].titleEl.textContent);
+      store.set('books', { title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+      console.log(store.get('books'));
+
+    }
+  }
 
 }
 function handleMoreBtns(event) {
