@@ -1,3 +1,7 @@
+* {
+    display: border-box;
+}
+
 .custom-large-height {
     height: 50vh;
 }
@@ -6,9 +10,13 @@
     height: 32vh;
 }
 
-@media screen and (max-width:768px) {
+.custom-minimum-width {
+    min-width: 245px;
+}
+
+/* @media screen and (max-width:768px) {
     main {
         flex-direction: column;
         flex-basis: 50%;
     }
-}
+} */
