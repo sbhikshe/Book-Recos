@@ -136,6 +136,9 @@ if(store.get('books')===null){
     store.set('books', savedBooks);
 } else{
     savedBooks = store.get('books');
+    if(!savedBooks){
+        savedBooks = [];
+    }
 }
 
 function handleSaveBtns(event) {
