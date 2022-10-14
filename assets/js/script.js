@@ -85,32 +85,48 @@ function displayBestSellers(data) {
   /* get 5 books from various lists */
   for (var i = 0; i < 5; i++) {
 
-    // randomize from among the lists returned
-    listChoice = Math.floor(Math.random() * numListsLength); 
-    bookList = data.results.lists[listChoice].books;
-    bookChoice = Math.floor(Math.random() * bookList.length);
+    /* we don't want to display the same book - pick 5 unique books */
+    var isDuplicate;
+
+    do {
+      isDuplicate = false;
+      // randomize from among the lists returned
+      listChoice = Math.floor(Math.random() * numListsLength); 
+      bookList = data.results.lists[listChoice].books;
+      bookChoice = Math.floor(Math.random() * bookList.length);
+      
+      for (var j = 0; j < i; j++) {
+        if(bookContainerEls[j].titleEl.textContent === bookList[bookChoice].title) {
+          console.log("Duplicate!!!");
+          console.log(bookContainerEls[j].titleEl.textContent + " : " + bookList[bookChoice].title);
+          isDuplicate = true;
+        }
+      }
+    } while (isDuplicate);
+
 
     /* get info for bookList[bookChoice] */
+    /*
     console.log("Book " + i + ":");
     console.log(bookList[bookChoice].author);
     console.log(bookList[bookChoice].title);
     console.log(bookList[bookChoice].description);
     console.log(bookList[bookChoice].book_image);
+    */
 
-    console.log(bookContainerEls[i].imgEl);
+    //console.log(bookContainerEls[i].imgEl);
     bookContainerEls[i].imgEl.src = bookList[bookChoice].book_image;
 
-    console.log(bookContainerEls[i].titleEl);
+    //console.log(bookContainerEls[i].titleEl);
     bookContainerEls[i].titleEl.textContent = bookList[bookChoice].title;
 
-    console.log(bookContainerEls[i].authorEl);
+    //console.log(bookContainerEls[i].authorEl);
     bookContainerEls[i].authorEl.textContent = bookList[bookChoice].author;
 
-    console.log(bookContainerEls[i].summaryEl);
+    //console.log(bookContainerEls[i].summaryEl);
     bookContainerEls[i].summaryEl.textContent = bookList[bookChoice].description;
 
     bookContainerEls[i].infoUrl = bookList[bookChoice].amazon_product_url;
-  
   }
 
 }
@@ -124,7 +140,9 @@ function handleMoreBtns(event) {
 
   for (var i = 0; i < 5; i++) {
     if (bookContainerEls[i].moreBtnEl == event.target) {
-      document.location.href = bookContainerEls[i].infoUrl;
+      //document.location.href = bookContainerEls[i].infoUrl;
+      /* open in a new tab */
+      window.open(bookContainerEls[i].infoUrl, '_blank');
     }
   }
   
