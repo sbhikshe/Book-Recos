@@ -1,4 +1,3 @@
-store.ge
 var book1 = {
     titleEl: document.querySelector("#book-title-1"),
     authorEl: document.querySelector("#book-author-1"),
