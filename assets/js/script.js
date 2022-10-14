@@ -223,6 +223,8 @@ function displayRandomPicks(dataB) {
       }else {
         bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
       }
+
+      bookContainerEls[i].infoUrl = yourBooks[i].volumeInfo.previewLink;
       
     }
 }
