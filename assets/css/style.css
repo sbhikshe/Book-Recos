@@ -6,8 +6,8 @@
     height: 32vh;
 }
 
-.custom-less-than-md {
-    max-width: 768px;
+.custom-minimum-width {
+    min-width: 245px;
 }
 
 /* @media screen and (max-width:768px) {
