@@ -50,26 +50,33 @@ var book5 = {
 
 var bookContainerEls = [book1, book2, book3, book4, book5];
 
+/* to store the user's browsing history */
+var savedBooks = [];
+
+function showBooks() {
+    /* get the best sellers and display them */
+    getBestSellers();
+
+    /* get the saved books from the history and display them */
+    getBrowsingHistory();
+}
+
 function getBestSellers() {
 
+    /* query by author name */
     //var requestUrl = "https://api.nytimes.com/svc/books/v3/reviews.json?author=barack+obama&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
+
+    /* query best sellers */
     //var requestUrl = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?age_group=8&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
+
+    /* for best seller lists request with published_date - this works better */
     var requestUrl = "https://api.nytimes.com/svc/books/v3/lists/overview.json?published_date=2022-10-01&api-key=mbr0cIYuEknkV8twRd7HKM3gDlmmsYSA";
 
     fetch(requestUrl)
         .then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
-
-                /* for best-seller request, use this */
-                //searchResultsTitleEl.textContent = data.results[0].author;
-                //searchResultsAuthorEl.textContent = data.results[0].title;
-                //searchResultsDescriptionEl.textContent = data.results[0].description;
-
                 displayBestSellers(data);
-                /* for best seller lists request with published_date */
-                //var bookList = data.results.lists[0].books;
-
             })
         });
 
@@ -130,14 +137,36 @@ function displayBestSellers(data) {
 
 }
 
-var savedBooks = [];
-
-if(store.get('books')===null){
-    store.set('books', savedBooks);
-} else{
+function getBrowsingHistory() {
+    /* Using store.js library to store and retrieve from local storage */
     savedBooks = store.get('books');
-    if(!savedBooks){
-        savedBooks = [];
+    if (!savedBooks) {
+        console.log("No saved books, nothing to show");
+        savedBooks = []; 
+    } else {
+        showBrowsingHistory();
+    }
+}
+
+function showBrowsingHistory() {
+    /* Masonry stuff */
+    if(savedBooks) {
+        $("#savedBooks").append("<ul>" + "</ul>");
+        for (var i = 0; i < savedBooks.length; i++) {
+            $("#savedBooks").append("<li>" + savedBooks[i].title + " - " + savedBooks[i].author +  "</li>");
+        }
+    }
+}
+
+function saveBrowsingHistory() {
+
+    if( store.get('books') === null){
+        store.set('books', savedBooks);
+    } else{
+        savedBooks = store.get('books');
+        if(!savedBooks){
+            savedBooks = [];
+        }
     }
 }
 
@@ -146,20 +175,35 @@ function handleSaveBtns(event) {
     for (var i = 0; i < 5; i++) {
         if (bookContainerEls[i].saveBtnEl == event.target) {
             console.log(bookContainerEls[i].titleEl.textContent);
-            // store.set('books' + i, { title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
-            // console.log(store.get('books'));
-            savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
-            store.set('books', savedBooks);
-            console.log(store.get('books'));
 
-            $("#savedBooks").append("<ul>" + "</ul>");
-            $("#savedBooks").append("<li>" + savedBooks[i].title + " - " + savedBooks[i].author +  "</li>");
-            // $("#savedBooks").append("<li>" + savedBooks[i].author + "</li>");
-            // $("#savedBooks").append("<img href='" + savedBooks[i].img + "'>" + "</img>");
-            // $("#savedBooks").children().attr("class", "row btn btn-primary m-1 mb-2 w-100");
+            /* check for duplicates here before pushing */
+            if (savedBooks) {
+                console.log("number of saved books: " + savedBooks.length)
+                console.log("checking for duplicates");
+                var isDuplicate = false;
+                for (var j = 0; j < savedBooks.length; j++) {
+                    if (savedBooks[j].title === bookContainerEls[i].titleEl.textContent) {
+                        console.log("found duplicated");
+                        isDuplicate = true;
+                    }
+                }
+                if (!isDuplicate) {
+                    console.log("not a duplicate");
+                    savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+                    store.set('books', savedBooks);
+                    console.log(store.get('books'));
+                    $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
+                }
+            } else {
+                savedBooks = [];
+                savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+                store.set('books', savedBooks);
+                console.log(store.get('books'));
+                $("#savedBooks").append("<ul>" + "</ul>");
+                $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
+            }
         }
     }
-
 }
 function handleMoreBtns(event) {
     console.log("handleMoreBtns: " + event.target);
@@ -174,7 +218,7 @@ function handleMoreBtns(event) {
 
 }
 
-$('document').ready(getBestSellers);
+$('document').ready(showBooks);
 book1.saveBtnEl.addEventListener('click', handleSaveBtns);
 book2.saveBtnEl.addEventListener('click', handleSaveBtns);
 book3.saveBtnEl.addEventListener('click', handleSaveBtns);
