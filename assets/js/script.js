@@ -1,52 +1,52 @@
-
+store.ge
 var book1 = {
-  titleEl: document.querySelector("#book-title-1"),
-  authorEl: document.querySelector("#book-author-1"),
-  summaryEl: document.querySelector("#book-desc-1"),
-  imgEl: document.querySelector("#book-cover-1"),
-  saveBtnEl: document.querySelector("#book-save-1"),
-  moreBtnEl: document.querySelector("#book-see-more-1"),
-  infoUrl: undefined
+    titleEl: document.querySelector("#book-title-1"),
+    authorEl: document.querySelector("#book-author-1"),
+    summaryEl: document.querySelector("#book-desc-1"),
+    imgEl: document.querySelector("#book-cover-1"),
+    saveBtnEl: document.querySelector("#book-save-1"),
+    moreBtnEl: document.querySelector("#book-see-more-1"),
+    infoUrl: undefined
 };
 
 var book2 = {
-  titleEl: document.querySelector("#book-title-2"),
-  authorEl: document.querySelector("#book-author-2"),
-  summaryEl: document.querySelector("#book-desc-2"),
-  imgEl: document.querySelector("#book-cover-2"),
-  saveBtnEl: document.querySelector("#book-save-2"),
-  moreBtnEl: document.querySelector("#book-see-more-2"),
-  infoUrl: undefined
+    titleEl: document.querySelector("#book-title-2"),
+    authorEl: document.querySelector("#book-author-2"),
+    summaryEl: document.querySelector("#book-desc-2"),
+    imgEl: document.querySelector("#book-cover-2"),
+    saveBtnEl: document.querySelector("#book-save-2"),
+    moreBtnEl: document.querySelector("#book-see-more-2"),
+    infoUrl: undefined
 };
 
 var book3 = {
-  titleEl: document.querySelector("#book-title-3"),
-  authorEl: document.querySelector("#book-author-3"),
-  summaryEl: document.querySelector("#book-desc-3"),
-  imgEl: document.querySelector("#book-cover-3"),
-  saveBtnEl: document.querySelector("#book-save-3"),
-  moreBtnEl: document.querySelector("#book-see-more-3"),
-  infoUrl: undefined
+    titleEl: document.querySelector("#book-title-3"),
+    authorEl: document.querySelector("#book-author-3"),
+    summaryEl: document.querySelector("#book-desc-3"),
+    imgEl: document.querySelector("#book-cover-3"),
+    saveBtnEl: document.querySelector("#book-save-3"),
+    moreBtnEl: document.querySelector("#book-see-more-3"),
+    infoUrl: undefined
 };
 
 var book4 = {
-  titleEl: document.querySelector("#book-title-4"),
-  authorEl: document.querySelector("#book-author-4"),
-  summaryEl: document.querySelector("#book-desc-4"),
-  imgEl: document.querySelector("#book-cover-4"),
-  saveBtnEl: document.querySelector("#book-save-4"),
-  moreBtnEl: document.querySelector("#book-see-more-4"),
-  infoUrl: undefined
+    titleEl: document.querySelector("#book-title-4"),
+    authorEl: document.querySelector("#book-author-4"),
+    summaryEl: document.querySelector("#book-desc-4"),
+    imgEl: document.querySelector("#book-cover-4"),
+    saveBtnEl: document.querySelector("#book-save-4"),
+    moreBtnEl: document.querySelector("#book-see-more-4"),
+    infoUrl: undefined
 };
 
 var book5 = {
-  titleEl: document.querySelector("#book-title-5"),
-  authorEl: document.querySelector("#book-author-5"),
-  summaryEl: document.querySelector("#book-desc-5"),
-  imgEl: document.querySelector("#book-cover-5"),
-  saveBtnEl: document.querySelector("#book-save-5"),
-  moreBtnEl: document.querySelector("#book-see-more-5"),
-  infoUrl: undefined
+    titleEl: document.querySelector("#book-title-5"),
+    authorEl: document.querySelector("#book-author-5"),
+    summaryEl: document.querySelector("#book-desc-5"),
+    imgEl: document.querySelector("#book-cover-5"),
+    saveBtnEl: document.querySelector("#book-save-5"),
+    moreBtnEl: document.querySelector("#book-see-more-5"),
+    infoUrl: undefined
 };
 
 var bookContainerEls = [book1, book2, book3, book4, book5];
@@ -77,83 +77,99 @@ function getBestSellers() {
 }
 
 function displayBestSellers(data) {
-  var numListsLength = data.results.lists.length;
-  var listChoice;
-  var bookList;
-  var bookChoice;
+    var numListsLength = data.results.lists.length;
+    var listChoice;
+    var bookList;
+    var bookChoice;
 
-  /* get 5 books from various lists */
-  for (var i = 0; i < 5; i++) {
+    /* get 5 books from various lists */
+    for (var i = 0; i < 5; i++) {
 
-    /* we don't want to display the same book - pick 5 unique books */
-    var isDuplicate;
+        /* we don't want to display the same book - pick 5 unique books */
+        var isDuplicate;
 
-    do {
-      isDuplicate = false;
-      // randomize from among the lists returned
-      listChoice = Math.floor(Math.random() * numListsLength); 
-      bookList = data.results.lists[listChoice].books;
-      bookChoice = Math.floor(Math.random() * bookList.length);
-      
-      for (var j = 0; j < i; j++) {
-        if(bookContainerEls[j].titleEl.textContent === bookList[bookChoice].title) {
-          console.log("Duplicate!!!");
-          console.log(bookContainerEls[j].titleEl.textContent + " : " + bookList[bookChoice].title);
-          isDuplicate = true;
-        }
-      }
-    } while (isDuplicate);
+        do {
+            isDuplicate = false;
+            // randomize from among the lists returned
+            listChoice = Math.floor(Math.random() * numListsLength);
+            bookList = data.results.lists[listChoice].books;
+            bookChoice = Math.floor(Math.random() * bookList.length);
+
+            for (var j = 0; j < i; j++) {
+                if (bookContainerEls[j].titleEl.textContent === bookList[bookChoice].title) {
+                    console.log("Duplicate!!!");
+                    console.log(bookContainerEls[j].titleEl.textContent + " : " + bookList[bookChoice].title);
+                    isDuplicate = true;
+                }
+            }
+        } while (isDuplicate);
 
 
-    /* get info for bookList[bookChoice] */
-    /*
-    console.log("Book " + i + ":");
-    console.log(bookList[bookChoice].author);
-    console.log(bookList[bookChoice].title);
-    console.log(bookList[bookChoice].description);
-    console.log(bookList[bookChoice].book_image);
-    */
+        /* get info for bookList[bookChoice] */
+        /*
+        console.log("Book " + i + ":");
+        console.log(bookList[bookChoice].author);
+        console.log(bookList[bookChoice].title);
+        console.log(bookList[bookChoice].description);
+        console.log(bookList[bookChoice].book_image);
+        */
 
-    //console.log(bookContainerEls[i].imgEl);
-    bookContainerEls[i].imgEl.src = bookList[bookChoice].book_image;
+        //console.log(bookContainerEls[i].imgEl);
+        bookContainerEls[i].imgEl.src = bookList[bookChoice].book_image;
 
-    //console.log(bookContainerEls[i].titleEl);
-    bookContainerEls[i].titleEl.textContent = bookList[bookChoice].title;
+        //console.log(bookContainerEls[i].titleEl);
+        bookContainerEls[i].titleEl.textContent = bookList[bookChoice].title;
 
-    //console.log(bookContainerEls[i].authorEl);
-    bookContainerEls[i].authorEl.textContent = bookList[bookChoice].author;
+        //console.log(bookContainerEls[i].authorEl);
+        bookContainerEls[i].authorEl.textContent = bookList[bookChoice].author;
 
-    //console.log(bookContainerEls[i].summaryEl);
-    bookContainerEls[i].summaryEl.textContent = bookList[bookChoice].description;
+        //console.log(bookContainerEls[i].summaryEl);
+        bookContainerEls[i].summaryEl.textContent = bookList[bookChoice].description;
 
-    bookContainerEls[i].infoUrl = bookList[bookChoice].amazon_product_url;
-  }
+        bookContainerEls[i].infoUrl = bookList[bookChoice].amazon_product_url;
+    }
 
+}
+
+var savedBooks = [];
+
+if(store.get('books')===null){
+    store.set('books', savedBooks);
+} else{
+    store.get('books');
 }
 
 function handleSaveBtns(event) {
-  console.log("handleSaveBtns: " + event.target);
-  for (var i = 0; i < 5; i++) {
-    if (bookContainerEls[i].saveBtnEl == event.target) {
-      console.log(bookContainerEls[i].titleEl.textContent);
-      store.set('books', { title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
-      console.log(store.get('books'));
+    console.log("handleSaveBtns: " + event.target);
+    for (var i = 0; i < 5; i++) {
+        if (bookContainerEls[i].saveBtnEl == event.target) {
+            console.log(bookContainerEls[i].titleEl.textContent);
+            // store.set('books' + i, { title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+            // console.log(store.get('books'));
+            savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+            store.set('books', savedBooks);
+            console.log(store.get('books'));
 
+            $("#savedBooks").append("<ul>" + "</ul>");
+            $("#savedBooks").append("<li>" + savedBooks[i].title + " - " + savedBooks[i].author +  "</li>");
+            // $("#savedBooks").append("<li>" + savedBooks[i].author + "</li>");
+            // $("#savedBooks").append("<img href='" + savedBooks[i].img + "'>" + "</img>");
+            // $("#savedBooks").children().attr("class", "row btn btn-primary m-1 mb-2 w-100");
+        }
     }
-  }
 
 }
 function handleMoreBtns(event) {
-  console.log("handleMoreBtns: " + event.target);
+    console.log("handleMoreBtns: " + event.target);
 
-  for (var i = 0; i < 5; i++) {
-    if (bookContainerEls[i].moreBtnEl == event.target) {
-      //document.location.href = bookContainerEls[i].infoUrl;
-      /* open in a new tab */
-      window.open(bookContainerEls[i].infoUrl, '_blank');
+    for (var i = 0; i < 5; i++) {
+        if (bookContainerEls[i].moreBtnEl == event.target) {
+            //document.location.href = bookContainerEls[i].infoUrl;
+            /* open in a new tab */
+            window.open(bookContainerEls[i].infoUrl, '_blank');
+        }
     }
-  }
-  
+
 }
 
 $('document').ready(getBestSellers);
@@ -177,62 +193,62 @@ $('#submit').on('click', function (event) {
     event.preventDefault();
     randomPicks();
 
-  });
-  
+});
+
 function randomPicks() {
 
-  var genreEntry = genreSearchEntry.val();
-  var requestUrlBook = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&orderBy=newest&printType=books&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+    var genreEntry = genreSearchEntry.val();
+    var requestUrlBook = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&orderBy=newest&printType=books&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
 
-  fetch(requestUrlBook)
-    .then(function (response) {
-      console.log(response);
-      if (response.status === 200) {
-      }
-      return response.json();
+    fetch(requestUrlBook)
+        .then(function (response) {
+            console.log(response);
+            if (response.status === 200) {
+            }
+            return response.json();
 
 
-      }).then(function (dataB) {
-        console.log(dataB); 
-        displayRandomPicks(dataB);
-                    
-      });
+        }).then(function (dataB) {
+            console.log(dataB);
+            displayRandomPicks(dataB);
+
+        });
 
 }
 
 function displayRandomPicks(dataB) {
 
-  var yourBooks = [];
-  var newBook;
+    var yourBooks = [];
+    var newBook;
 
-  for (var i = 0; i < 5; i++) {
-      newBook = dataB.items[Math.floor(Math.random() * dataB.items.length)];
+    for (var i = 0; i < 5; i++) {
+        newBook = dataB.items[Math.floor(Math.random() * dataB.items.length)];
 
-      if(yourBooks.includes(newBook)){
-        i = i-1;
-      }else{
-        yourBooks[i] = newBook;
-      }
+        if (yourBooks.includes(newBook)) {
+            i = i - 1;
+        } else {
+            yourBooks[i] = newBook;
+        }
 
-     
-      console.log(bookContainerEls[i].imgEl);
-      bookContainerEls[i].imgEl.src = yourBooks[i].volumeInfo.imageLinks.thumbnail;
 
-      console.log(bookContainerEls[i].titleEl);
-      bookContainerEls[i].titleEl.textContent = yourBooks[i].volumeInfo.title;
+        console.log(bookContainerEls[i].imgEl);
+        bookContainerEls[i].imgEl.src = yourBooks[i].volumeInfo.imageLinks.thumbnail;
 
-      console.log(bookContainerEls[i].authorEl);
-      bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors[0];
-    //   console.log(bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors);
+        console.log(bookContainerEls[i].titleEl);
+        bookContainerEls[i].titleEl.textContent = yourBooks[i].volumeInfo.title;
 
-      console.log(bookContainerEls[i].summaryEl);
-      if(yourBooks[i].volumeInfo.description.length > 150){
-        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description.substring(0, 150) + '...';
-      }else {
-        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
-      }
+        console.log(bookContainerEls[i].authorEl);
+        bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors[0];
+        //   console.log(bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors);
 
-      bookContainerEls[i].infoUrl = yourBooks[i].volumeInfo.previewLink;
-      
+        console.log(bookContainerEls[i].summaryEl);
+        if (yourBooks[i].volumeInfo.description.length > 150) {
+            bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description.substring(0, 150) + '...';
+        } else {
+            bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
+        }
+
+        bookContainerEls[i].infoUrl = yourBooks[i].volumeInfo.previewLink;
+
     }
 }
