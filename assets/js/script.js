@@ -133,6 +133,14 @@ function displayBestSellers(data) {
 
 function handleSaveBtns(event) {
   console.log("handleSaveBtns: " + event.target);
+  for (var i = 0; i < 5; i++) {
+    if (bookContainerEls[i].saveBtnEl == event.target) {
+      console.log(bookContainerEls[i].titleEl.textContent);
+      store.set('books', { title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+      console.log(store.get('books'));
+
+    }
+  }
 
 }
 function handleMoreBtns(event) {
@@ -174,9 +182,9 @@ $('#submit').on('click', function (event) {
 function randomPicks() {
 
   var genreEntry = genreSearchEntry.val();
-  var requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+  var requestUrlBook = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&orderBy=newest&printType=books&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
 
-  fetch(requestUrl)
+  fetch(requestUrlBook)
     .then(function (response) {
       console.log(response);
       if (response.status === 200) {
@@ -195,11 +203,18 @@ function randomPicks() {
 function displayRandomPicks(dataB) {
 
   var yourBooks = [];
+  var newBook;
 
   for (var i = 0; i < 5; i++) {
-      yourBooks[i] = dataB.items[Math.floor(Math.random() * dataB.items.length)];
-      console.log(yourBooks);
+      newBook = dataB.items[Math.floor(Math.random() * dataB.items.length)];
 
+      if(yourBooks.includes(newBook)){
+        i = i-1;
+      }else{
+        yourBooks[i] = newBook;
+      }
+
+     
       console.log(bookContainerEls[i].imgEl);
       bookContainerEls[i].imgEl.src = yourBooks[i].volumeInfo.imageLinks.thumbnail;
 
@@ -207,9 +222,15 @@ function displayRandomPicks(dataB) {
       bookContainerEls[i].titleEl.textContent = yourBooks[i].volumeInfo.title;
 
       console.log(bookContainerEls[i].authorEl);
-      bookContainerEls[i].authorEl.textContent =yourBooks[i].volumeInfo.author;
+      bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors[0];
+    //   console.log(bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors);
 
       console.log(bookContainerEls[i].summaryEl);
-      bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
+      if(yourBooks[i].volumeInfo.description.length > 150){
+        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description.substring(0, 150) + '...';
+      }else {
+        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
+      }
+      
     }
 }
