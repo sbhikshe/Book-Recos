@@ -214,11 +214,12 @@ function displayRandomPicks(dataB) {
       bookContainerEls[i].titleEl.textContent = yourBooks[i].volumeInfo.title;
 
       console.log(bookContainerEls[i].authorEl);
-      bookContainerEls[i].authorEl.textContent =yourBooks[i].volumeInfo.author;
+      bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors[0];
+    //   console.log(bookContainerEls[i].authorEl.textContent = yourBooks[i].volumeInfo.authors);
 
       console.log(bookContainerEls[i].summaryEl);
-      if(yourBooks[i].volumeInfo.description.length > 500){
-        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description.substring(0, 500) + '...';
+      if(yourBooks[i].volumeInfo.description.length > 150){
+        bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description.substring(0, 150) + '...';
       }else {
         bookContainerEls[i].summaryEl.textContent = yourBooks[i].volumeInfo.description;
       }
