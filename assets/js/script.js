@@ -233,12 +233,13 @@ book5.moreBtnEl.addEventListener('click', handleMoreBtns);
 
 
 var genreSearchEntry = $("#genreSearch");
+var genreCurrent = $("#current-genre");
 
 
 $('#submit').on('click', function (event) {
     event.preventDefault();
     randomPicks();
-
+    
 });
 
 function randomPicks() {
@@ -267,6 +268,9 @@ function displayRandomPicks(dataB) {
     var yourBooks = [];
     var newBook;
 
+    genreCurrent.html(genreSearchEntry.val());
+
+    
     for (var i = 0; i < 5; i++) {
         newBook = dataB.items[Math.floor(Math.random() * dataB.items.length)];
 
