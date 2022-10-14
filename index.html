@@ -22,7 +22,6 @@
     <!-- pseudo media query -->
     <main class="flex flex-col basis-2/4 justify-between md:flex-row md:basis-auto">
         <!-- aside should be 2/12 col -->
-        <!-- TODO: Create header of current genre (or best sellers) -->
         <aside class="flex flex-col w-10/12 lg:w-2/12 mx-10 my-5">
             <form class="flex flex-col items-center card bg-base-300 rounded-box pr-5 h-40 w-60  ">
                 <label class="flex text-xl font-semibold mt-1 ml-3">Search for books:</label>
@@ -46,9 +45,10 @@
             <div id="savedBooks"></div> 
             <!-- Saved books section -->
         </aside>
-
+        
         <!-- main book cover / best sellers container -->
         <div id="main-containers" class="flex flex-col mx-10 px-1 mt-5 w-10/12 md:h-full">
+            <!-- TODO: Create header of current genre (or best sellers) -->
             <!-- <h1></h1> -->
             <div id="book-covers-container"
                 class="h-auto card bg-base-300 rounded-box flex flex-col flex-wrap w-auto content-evenly justify-evenly md:custom-large-height  md:flex-row">
