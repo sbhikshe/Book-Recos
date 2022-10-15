@@ -228,12 +228,23 @@ function handleMoreBtns(event) {
 $('document').ready(showBooks);
 
 var genreSearchEntry = $("#genreSearch");
+var genreCurrent = $("#current-genre");
+var modalPopup = $("#my-modal-3");
+var modalPopupBtn = $("#btnModel");
+modalPopupBtn.hide();
 
 
 $('#submit').on('click', function (event) {
     event.preventDefault();
-    randomPicks();
 
+    if(genreSearchEntry.val() === null) {
+        modalPopup = modalPopupBtn.click() ; 
+        // alert('Please select genre');
+    }else{
+        randomPicks();
+    }
+
+    
 });
 
 function randomPicks() {
@@ -262,6 +273,9 @@ function displayRandomPicks(dataB) {
     var yourBooks = [];
     var newBook;
 
+    genreCurrent.html(genreSearchEntry.val());
+
+    
     for (var i = 0; i < 5; i++) {
         newBook = dataB.items[Math.floor(Math.random() * dataB.items.length)];
 
