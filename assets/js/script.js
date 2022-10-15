@@ -229,11 +229,21 @@ $('document').ready(showBooks);
 
 var genreSearchEntry = $("#genreSearch");
 var genreCurrent = $("#current-genre");
+var modalPopup = $("#my-modal-3");
+var modalPopupBtn = $("#btnModel");
+modalPopupBtn.hide();
 
 
 $('#submit').on('click', function (event) {
     event.preventDefault();
-    randomPicks();
+
+    if(genreSearchEntry.val() === null) {
+        modalPopup = modalPopupBtn.click() ; 
+        // alert('Please select genre');
+    }else{
+        randomPicks();
+    }
+
     
 });
 
