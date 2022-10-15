@@ -57,6 +57,12 @@ function showBooks() {
     /* get the best sellers and display them */
     getBestSellers();
 
+    /* set up event listeners for the Save and More buttons */
+    for (var i = 0; i < 5; i++) {
+        bookContainerEls[i].saveBtnEl.addEventListener('click', handleSaveBtns);
+        bookContainerEls[i].moreBtnEl.addEventListener('click', handleMoreBtns);
+    }
+
     /* get the saved books from the history and display them */
     getBrowsingHistory();
 }
@@ -133,6 +139,7 @@ function displayBestSellers(data) {
         bookContainerEls[i].summaryEl.textContent = bookList[bookChoice].description;
 
         bookContainerEls[i].infoUrl = bookList[bookChoice].amazon_product_url;
+
     }
 
 }
@@ -219,18 +226,6 @@ function handleMoreBtns(event) {
 }
 
 $('document').ready(showBooks);
-book1.saveBtnEl.addEventListener('click', handleSaveBtns);
-book2.saveBtnEl.addEventListener('click', handleSaveBtns);
-book3.saveBtnEl.addEventListener('click', handleSaveBtns);
-book4.saveBtnEl.addEventListener('click', handleSaveBtns);
-book5.saveBtnEl.addEventListener('click', handleSaveBtns);
-
-book1.moreBtnEl.addEventListener('click', handleMoreBtns);
-book2.moreBtnEl.addEventListener('click', handleMoreBtns);
-book3.moreBtnEl.addEventListener('click', handleMoreBtns);
-book4.moreBtnEl.addEventListener('click', handleMoreBtns);
-book5.moreBtnEl.addEventListener('click', handleMoreBtns);
-
 
 var genreSearchEntry = $("#genreSearch");
 
