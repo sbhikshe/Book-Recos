@@ -17,11 +17,3 @@
 .custom-aside-minimum-width {
     min-width: 200px;
 }
-    
-
-/* @media screen and (max-width:768px) {
-    main {
-        flex-direction: column;
-        flex-basis: 50%;
-    }
-} */
