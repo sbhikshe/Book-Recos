@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- consider adding a theme dropdown -->
+<!-- data-theme is a part of DaisyUI that sets a specific color scheme along with corresponding color variables-->
+<!-- https://daisyui.com/docs/themes/ -->
 <html lang="en" data-theme="retro">
 
 <head>
@@ -16,19 +17,23 @@
 
 <body>
     <header>
-        <div class="navbar-center bg-secondary h-auto flex justify-center items-center">
+        <div class="flex justify-center items-center navbar-center h-auto bg-secondary">
+            <!-- normal-case will keep letters uppercase or lowercase as entered -->
+            <!-- Emojis can appear slightly larger than letters if everything is the same size, so the emojis will be a smaller font size -->
             <h1 class="normal-case py-5 my-2"><span class="text-6xl">B</span><span class="text-5xl">❤️🎯</span><span class="text-6xl">K Reco’s</span></h1>
         </div>
     </header>
-    <!-- pseudo media query -->
+    <!-- inline css media query -->
     <main class="flex flex-col basis-2/4 justify-between md:flex-row md:basis-auto">
-        <!-- aside should be 2/12 col -->
-        <aside class="flex flex-col custom-aside-minimum-width w-10/12 md:w-3/12 mx-10 my-5">
-            <form class="flex flex-col items-center card bg-base-300 rounded-box pr-5 h-40 w-full  ">
-                <label class="flex text-xl font-semibold mt-1 ml-3">Search for books:</label>
+        <!-- aside for the dropdown form and for displaying saved book titles + authors -->
+        <aside class="flex flex-col custom-aside-minimum-width mx-10 my-5 w-10/12 md:w-3/12">
+            <!-- overall form for the dropdown menu to select a genre -->
+            <form class="flex flex-col items-center card bg-base-300 rounded-box pr-5 h-40 w-full">
+                <label class="flex font-semibold text-xl mt-1 ml-3">Search for books:</label>
                 <select
                     class="select select-info justify-start min-w-96 w-full text-center bg-info-content text-xl mt-2 ml-5"
                     id="genreSearch">
+                    <!-- a placeholder option to show what the dropdown does -->
                     <option disabled selected>Select genre</option>
                     <option id="genre-adventure">Adventure</option>
                     <option id="genre-classics">Classics</option>
@@ -41,18 +46,17 @@
                     <option id="genre-poetry">Poetry</option>
                     <option id="genre-religion">Religion</option>
                 </select>
+                <!-- submit button to search for selected genre -->
                 <button type="submit" id="submit" class="flex btn btn-info min-w-96 w-full mt-3 ml-5">Search</button>
             </form>
             <div class="divider"></div>
             <section id="book-list-container"></section>
             <div id="savedBooks"></div>
-            <!-- Saved books section -->
+            <!-- when the save book button is clicked, title + author will be appended here -->
         </aside>
 
-        <!-- The button to open modal -->
-        <label for="my-modal-3" class="btn modal-button" id="btnModel">open modal</label>
-
-        <!-- Put this part before </body> tag -->
+        <!-- modal for catching any api errors or if no genre is selected -->
+        <label for="my-modal-3" class="btn modal-button" id="btnModel"></label>
         <input type="checkbox" id="my-modal-3" class="modal-toggle" />
         <div class="modal">
             <div class="modal-box relative border-solid border-warning-content border-4 bg-warning">
@@ -63,11 +67,13 @@
         </div>
 
         <!-- main book cover / best sellers container -->
+        <!-- will default to best sellers on page load -->
         <div id="main-containers" class="flex flex-col bg-base-300 mx-10 px-1 mt-5 w-10/12 md:h-full">
             <h1 class="text-center underline text-4xl font-bold py-3"><span id="current-genre">The New York Times Best
                     Sellers</span></h1>
             <div id="book-covers-container"
-                class="h-auto card  rounded-box flex flex-col flex-wrap w-auto content-evenly justify-evenly md:custom-large-height  md:flex-row">
+                class="h-auto card rounded-box flex flex-col flex-wrap w-auto content-evenly justify-evenly md:custom-large-height  md:flex-row">
+                <!-- each book container will display: book cover, title, author, a description (if exists), and 2 buttons to save the book's info and to see an amazon link for the book -->
                 <div id="book-cover-container-1"
                     class="card card-compact custom-minimum-width w-80 m-3 bg-base-100 shadow-xl">
                     <figure><img id="book-cover-1" class="h-80 object-fill mt-2 " src="" alt="Book Cover" />
@@ -156,6 +162,7 @@
                 </div>
             </div>
             <div class="divider"></div> 
+            <!-- a container using grid-gallery to display book covers of saved books. Clicking will also redirect to their amazon links -->
             <div class="gg-container bg-base-300">
                 <div class="gg-box" id="savedBooksHistory" >
                 </div>
