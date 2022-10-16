@@ -18,20 +18,21 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
 ![After retrieving books with server side API](./assets/images/BR_3.png)
 
 ## Screenshots
-### *1. Initial Screen with form to search for books by genre - shows books from NY Times query*
-!["Initial Screen with genre search form and NY Times best sellers"](./assets/images/<TBD>)
 
-### *2. Select genre from dropdown box*
-!["Select genre from dropdown box"](./assets/images/<TBD>)
+### *1. Select genre from dropdown box*
+!["Select genre from dropdown box"](./assets/images/Dropdown.png)
+
+### *2. Initial Screen with form to search for books by genre - shows books from NY Times query*
+!["Initial Screen with genre search form and NY Times best sellers"](./assets/images/MainPage.png)
 
 ### *3. Displaying search results by selected genre from Google Books API*
-!["Search results from Google Books API"](./assets/images/<TBD>)
+!["Search results from Google Books API"](./assets/images/GenreResult.png)
 
 ### *4. Save book to history*
-!["Save book to history in local storage"](./assets/images/<TBD>)
+!["Save book to history in local storage"](./assets/images/Bookshelf.png)
 
 ### *5. See More button leads to more information about the book*
-!["See More button handling"](./assets/images/<TBD>)
+!["See More button handling"](./assets/images/SeeMore.gif)
 
 ## Code Snippets
 
@@ -71,12 +72,17 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
 - Server Side API - Google Books, New York Times
 
 ## Credits
-[Google Books API](https://)\
+[Google Books API](https://developers.google.com/books/docs/overview)\
 [NY Times Books API](https://developer.nytimes.com/docs/books-product/1/overview)\
 [NY Times API to get Best Sellers](https://developer.nytimes.com/docs/books-product/1/routes/lists/overview.json/get)\
 [store.js library](https://github.com/marcuswestin/store.js)\
 [TBD](TBD)
 
 ## Author Links
-### LinkedIn: [Peter](TBD) - [Mehmet](TBD) - [Priya](https://www.linkedin.com/in/sripriya-bhikshesvaran-8520992/)
-### Github: [Peter](TBD) - [Mehmet](TBD) - [Priya](https://github.com/sbhikshe)
+### LinkedIn: [Peter](TBD) - [Mehmet](https://www.linkedin.com/in/mehmet-musabeyo%C4%9Flu-788758a8/) - [Priya](https://www.linkedin.com/in/sripriya-bhikshesvaran-8520992/)
+### Github: [Peter](TBD) - [Mehmet](https://github.com/MehmetMusabeyoglu) - [Priya](https://github.com/sbhikshe)
+
+ ## License 
+ This project is licensed under the MIT License 
+ <br>
+ [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
