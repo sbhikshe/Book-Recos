@@ -50,7 +50,7 @@ var book5 = {
 
 var bookContainerEls = [book1, book2, book3, book4, book5];
 
-/* to store the user's browsing history */
+/* to store the books the user saves */
 var savedBooks = [];
 
 /* Saved books gallery */
@@ -134,16 +134,6 @@ function displayBestSellers(data) {
             }
         } while (isDuplicate);
 
-
-        /* get info for bookList[bookChoice] */
-        /*
-        console.log("Book " + i + ":");
-        console.log(bookList[bookChoice].author);
-        console.log(bookList[bookChoice].title);
-        console.log(bookList[bookChoice].description);
-        console.log(bookList[bookChoice].book_image);
-        */
-
         //console.log(bookContainerEls[i].imgEl);
         bookContainerEls[i].imgEl.src = bookList[bookChoice].book_image;
 
@@ -174,19 +164,20 @@ function getSavedBooksHistory() {
 }
 
 function showSavedBooksHistory() {
-    /* Masonry stuff */
+    /* display in a grid gallery */
     if(savedBooks) {
         $("#savedBooks").append("<ul>" + "</ul>");
         for (var i = 0; i < savedBooks.length; i++) {
-            createGalleryItem(savedBooks[i].img);
+            createGalleryItem(savedBooks[i].img, savedBooks[i].infoUrl);
         }
     }
 }
 
-function createGalleryItem(bookCover) {
+function createGalleryItem(bookCover, url) {
     var imgEl = document.createElement('img');
     imgEl.src = bookCover;
     imgEl.setAttribute("style", "width: 250px; padding: 2px;");
+    imgEl.addEventListener('click', function() { window.open(url, '_blank')});
     ggBoxEl.append(imgEl);
     console.log(ggBoxEl);
 }
@@ -210,21 +201,27 @@ function handleSaveBtns(event) {
                 }
                 if (!isDuplicate) {
                     console.log("not a duplicate");
-                    savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+                    savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, 
+                                    author: bookContainerEls[i].authorEl.textContent, 
+                                    img: bookContainerEls[i].imgEl.src,
+                                    infoUrl: bookContainerEls[i].infoUrl});
                     store.set('books', savedBooks);
                     console.log(store.get('books'));
                     $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
-                    createGalleryItem(bookContainerEls[i].imgEl.src);
+                    createGalleryItem(bookContainerEls[i].imgEl.src, bookContainerEls[i].infoUrl);
 
                 }
             } else {
                 savedBooks = [];
-                savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, author: bookContainerEls[i].authorEl.textContent, img: bookContainerEls[i].imgEl.src });
+                savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, 
+                                author: bookContainerEls[i].authorEl.textContent, 
+                                img: bookContainerEls[i].imgEl.src,
+                                infoUrl: bookContainerEls[i].infoUrl });
                 store.set('books', savedBooks);
                 console.log(store.get('books'));
                 $("#savedBooks").append("<ul>" + "</ul>");
                 $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
-                createGalleryItem(bookContainerEls[i].imgEl.src);
+                createGalleryItem(bookContainerEls[i].imgEl.src, bookContainerEls[i].infoUrl);
             }
         }
     }
