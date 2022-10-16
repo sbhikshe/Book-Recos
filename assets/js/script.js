@@ -65,7 +65,7 @@ gridGallery({
     // space between images
     gapLength: 4,
     // row height
-    rowHeight: 180,
+    rowHeight: 320,
     // column width
     columnWidth: 200
     
@@ -98,10 +98,17 @@ function getBestSellers() {
 
     fetch(requestUrl)
         .then(function (response) {
-            response.json().then(function (data) {
-                console.log(data);
-                displayBestSellers(data);
-            })
+            if(response.ok) {
+                response.json().then(function (data) {
+                    console.log(data);
+                    displayBestSellers(data);
+                });
+            } else {
+                console.log("HTTP error: " + response.status);
+            } 
+        }) 
+        .catch(function(){
+            alert(response.status);
         });
 
 }
@@ -134,16 +141,12 @@ function displayBestSellers(data) {
             }
         } while (isDuplicate);
 
-        //console.log(bookContainerEls[i].imgEl);
         bookContainerEls[i].imgEl.src = bookList[bookChoice].book_image;
 
-        //console.log(bookContainerEls[i].titleEl);
         bookContainerEls[i].titleEl.textContent = bookList[bookChoice].title;
 
-        //console.log(bookContainerEls[i].authorEl);
         bookContainerEls[i].authorEl.textContent = bookList[bookChoice].author;
 
-        //console.log(bookContainerEls[i].summaryEl);
         bookContainerEls[i].summaryEl.textContent = bookList[bookChoice].description;
 
         bookContainerEls[i].infoUrl = bookList[bookChoice].amazon_product_url;
@@ -187,6 +190,10 @@ function handleSaveBtns(event) {
     for (var i = 0; i < 5; i++) {
         if (bookContainerEls[i].saveBtnEl == event.target) {
             console.log(bookContainerEls[i].titleEl.textContent);
+            if (bookContainerEls[i].titleEl.textContent == "") {
+                /* nothing to save */
+                return;
+            }
 
             /* check for duplicates here before pushing */
             if (savedBooks) {
@@ -201,25 +208,22 @@ function handleSaveBtns(event) {
                 }
                 if (!isDuplicate) {
                     console.log("not a duplicate");
-                    savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, 
-                                    author: bookContainerEls[i].authorEl.textContent, 
-                                    img: bookContainerEls[i].imgEl.src,
-                                    infoUrl: bookContainerEls[i].infoUrl});
-                    store.set('books', savedBooks);
-                    console.log(store.get('books'));
-                    $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
-                    createGalleryItem(bookContainerEls[i].imgEl.src, bookContainerEls[i].infoUrl);
-
                 }
             } else {
+                /* create an empty array and a list (below the genre search) to display the saved books */
                 savedBooks = [];
+                $("#savedBooks").append("<ul>" + "</ul>"); 
+            }
+
+            /* Add the book to the savedBooks[] if it is empty or if it is not already in the array (duplicate).
+                Set to local storage, show in list below genre search. */
+            if((savedBooks.length == 0) || (!isDuplicate)) {
                 savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, 
-                                author: bookContainerEls[i].authorEl.textContent, 
-                                img: bookContainerEls[i].imgEl.src,
-                                infoUrl: bookContainerEls[i].infoUrl });
+                    author: bookContainerEls[i].authorEl.textContent, 
+                    img: bookContainerEls[i].imgEl.src,
+                    infoUrl: bookContainerEls[i].infoUrl });
                 store.set('books', savedBooks);
                 console.log(store.get('books'));
-                $("#savedBooks").append("<ul>" + "</ul>");
                 $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
                 createGalleryItem(bookContainerEls[i].imgEl.src, bookContainerEls[i].infoUrl);
             }
@@ -231,12 +235,10 @@ function handleMoreBtns(event) {
 
     for (var i = 0; i < 5; i++) {
         if (bookContainerEls[i].moreBtnEl == event.target) {
-            //document.location.href = bookContainerEls[i].infoUrl;
             /* open in a new tab */
             window.open(bookContainerEls[i].infoUrl, '_blank');
         }
     }
-
 }
 
 $('document').ready(showBooks);
