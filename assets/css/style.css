@@ -2,6 +2,10 @@
     display: border-box;
 }
 
+/* Tailwind is normally installed via node.js, and not through a cdn link. However because we are using the cdn link, we can't access all of tailwind's features.
+This means we do not have access to Tailwind's extend classes feature. Custom classes to define a single element like height: 50vh would normally be down in a separate file.
+So these custom classes were made to help facilitate viewport media queries.  */
+
 .custom-large-height {
     height: 50vh;
 }
