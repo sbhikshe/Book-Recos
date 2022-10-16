@@ -71,6 +71,16 @@ gridGallery({
     
 });
 
+/* For modals */
+var modalH3El = document.querySelector('#modalError');
+var modalPEl = document.querySelector('#modalMsg');
+
+function showError(category, msg) {
+    modalH3El.textContent = category;
+    modalPEl.textContent = msg;
+    modalPopupBtn.click(); 
+}
+
 function showBooks() {
     /* get the best sellers and display them */
     getBestSellers();
@@ -105,6 +115,9 @@ function getBestSellers() {
                 });
             } else {
                 console.log("HTTP error: " + response.status);
+                var category = "HTTP Error:";
+                var msg = "Fetch request to NY Times: Error " + response.status;
+                showError(category, msg);
             } 
         }) 
         .catch(function(){
@@ -254,7 +267,10 @@ $('#submit').on('click', function (event) {
     event.preventDefault();
 
     if(genreSearchEntry.val() === null) {
-        modalPopup = modalPopupBtn.click() ; 
+        var category = "Invalid Selection!";
+        var msg = "Please select a genre before click to search button.";
+        showError(category, msg);
+        //modalPopup = modalPopupBtn.click() ; 
         // alert('Please select genre');
     }else{
         randomPicks();
