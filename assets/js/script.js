@@ -53,6 +53,24 @@ var bookContainerEls = [book1, book2, book3, book4, book5];
 /* to store the user's browsing history */
 var savedBooks = [];
 
+/* Saved books gallery */
+var ggBoxEl = document.querySelector(".gg-box");
+gridGallery({
+    // gallery selector
+    selector: "#savedBooksHistory",
+    // enable dark mode
+    darkMode: true,
+    // or "horizontal"
+    layout: "square",
+    // space between images
+    gapLength: 4,
+    // row height
+    rowHeight: 180,
+    // column width
+    columnWidth: 200
+    
+});
+
 function showBooks() {
     /* get the best sellers and display them */
     getBestSellers();
@@ -64,7 +82,7 @@ function showBooks() {
     }
 
     /* get the saved books from the history and display them */
-    getBrowsingHistory();
+    getSavedBooksHistory();
 }
 
 function getBestSellers() {
@@ -144,37 +162,33 @@ function displayBestSellers(data) {
 
 }
 
-function getBrowsingHistory() {
+function getSavedBooksHistory() {
     /* Using store.js library to store and retrieve from local storage */
     savedBooks = store.get('books');
     if (!savedBooks) {
         console.log("No saved books, nothing to show");
         savedBooks = []; 
     } else {
-        showBrowsingHistory();
+        showSavedBooksHistory();
     }
 }
 
-function showBrowsingHistory() {
+function showSavedBooksHistory() {
     /* Masonry stuff */
     if(savedBooks) {
         $("#savedBooks").append("<ul>" + "</ul>");
         for (var i = 0; i < savedBooks.length; i++) {
-            $("#savedBooks").append("<li>" + savedBooks[i].title + " - " + savedBooks[i].author +  "</li>");
+            createGalleryItem(savedBooks[i].img);
         }
     }
 }
 
-function saveBrowsingHistory() {
-
-    if( store.get('books') === null){
-        store.set('books', savedBooks);
-    } else{
-        savedBooks = store.get('books');
-        if(!savedBooks){
-            savedBooks = [];
-        }
-    }
+function createGalleryItem(bookCover) {
+    var imgEl = document.createElement('img');
+    imgEl.src = bookCover;
+    imgEl.setAttribute("style", "width: 250px; padding: 2px;");
+    ggBoxEl.append(imgEl);
+    console.log(ggBoxEl);
 }
 
 function handleSaveBtns(event) {
@@ -200,6 +214,8 @@ function handleSaveBtns(event) {
                     store.set('books', savedBooks);
                     console.log(store.get('books'));
                     $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
+                    createGalleryItem(bookContainerEls[i].imgEl.src);
+
                 }
             } else {
                 savedBooks = [];
@@ -208,6 +224,7 @@ function handleSaveBtns(event) {
                 console.log(store.get('books'));
                 $("#savedBooks").append("<ul>" + "</ul>");
                 $("#savedBooks").append("<li>" + bookContainerEls[i].titleEl.textContent + " - " + bookContainerEls[i].authorEl.textContent +  "</li>");
+                createGalleryItem(bookContainerEls[i].imgEl.src);
             }
         }
     }
