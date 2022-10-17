@@ -47,6 +47,9 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
 ### *5. See More button leads to more information about the book*
 !["See More button handling"](./assets/images/SeeMore.gif)
 
+### *6. Gif of site at different screen sizes*
+!["Gif of site at different screen sizes"](./assets/images/DifferentSizeResponse.gif)
+
 ## Code Snippets
 
 ### 1. Fetch request to get best sellers from New York Times
@@ -63,7 +66,25 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
         });
   
 ```
-### 2. Handle the "See More" button
+
+### 2. Fetch request to get books by genre from Google Books API
+#### Send out the fetch request to get the books by genre from Google Books filtered by release date,print type and subject.
+```
+var requestUrlBook = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreEntry + '&orderBy=newest&printType=books&maxResults=40&key=AIzaSyAAo4826hqGYvowcixZb8ZXQ3hpqBGqD2Q';
+
+    fetch(requestUrlBook)
+        .then(function (response) {
+            console.log(response);
+            if (response.status === 200) {
+                response.json().then(function (dataB) {
+                    console.log(dataB);
+                    displayRandomPicks(dataB);
+        
+                });
+  
+```
+
+### 3. Handle the "See More" button
 #### When the "See More" button is clicked on one of the books shown, open a new window with a page that has more information about the book.
 ```
      for (var i = 0; i < 5; i++) {
@@ -73,7 +94,7 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
         }
     }
 ```
-### 3. Individual container for book information
+### 4. Individual container for book information
 #### Includes cover image, title, author, description using tailwind css
 ```
 <div id="book-cover-container-1"
@@ -96,6 +117,28 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
                 </div>
 ```
 
+### 5. Store.js library
+### This part of the code for storing data
+```
+  savedBooks.push({ title: bookContainerEls[i].titleEl.textContent, 
+                    author: bookContainerEls[i].authorEl.textContent, 
+                    img: bookContainerEls[i].imgEl.src,
+                    infoUrl: bookContainerEls[i].infoUrl });
+                store.set('books', savedBooks);
+```
+
+### 6. Grid gallery
+### This part of the code for adding book to the saved books gallery
+```
+function createGalleryItem(bookCover, url) {
+    var imgEl = document.createElement('img');
+    imgEl.src = bookCover;
+    imgEl.setAttribute("style", "width: 250px; padding: 2px;");
+    imgEl.addEventListener('click', function() { window.open(url, '_blank')});
+    ggBoxEl.append(imgEl);
+}
+```
+
 ## Technologies Used
 - HTML
 - CSS
@@ -103,7 +146,8 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
 - jQuery
 - Tailwind CSS framework
 - Daisy UI
-- store.js library
+- Store.js library
+- Grid-Gallery.js library
 - Server Side API - Google Books, New York Times
 
 ## Credits
