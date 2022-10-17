@@ -13,6 +13,12 @@
 
 Book Reco's offers a simple, easy to use interface to search for books by genre. With Book Reco’s™, each search returns books randomly picked from the whole universe of books belonging to that genre; no repetitions, no skewing towards the popular ones which a fan had probably already read. From the list of recommended books, a book lover can see information and ratings of these books, as well as a summary.The application has been deployed to the Github Pages at [Book Recos](https://sbhikshe.github.io/Book-Recos/).
 
+## Usage
+
+Upon first visiting the webpage, the user should be greeted with a header with our logo, a dropdown menu to select a book genre, and 5 New York Times Best Sellers.
+The user can either refresh the page to see a new listing of New York Times best sellers or choose a genre from the dropdown menu. Either choice will generate 5 randomly chosen books. 
+Each book displayed will have 2 buttons underneath it. The 'see more' button will redirect to either an amazon or google books link for that book. The 'save book' button will save that book's data to local storage. This also appends the book's title and author to a list on the left, underneath the search form. Underneath the displayed books, the saved book's cover will appear in a gallery. Clicking this cover will also redirect to its corresponding amazon or google books link. The book gallery will remain upon page refresh.
+
 ## Wireframe
 ![Wireframe Design - Initial interface](./assets/images/BR_1.png)
 ![After retrieving books with server side API](./assets/images/BR_3.png)
