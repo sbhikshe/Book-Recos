@@ -3,6 +3,7 @@
 ## Table of Contents
 * [Description](#description)
 * [Wireframe](#wireframe)
+* [User Story](#user-story)
 * [Screenshots](#screenshots)
 * [Code Snippets](#code-snippets)
 * [Technologies Used](#technologies-used)
@@ -16,6 +17,18 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
 ## Wireframe
 ![Wireframe Design - Initial interface](./assets/images/BR_1.png)
 ![After retrieving books with server side API](./assets/images/BR_3.png)
+
+## User Story
+
+| As a         | I want to                            | So that   
+| ------------ | ------------------------------------ | ------------    |
+| `Book lover` | select a genre from a dropdown       | `I see new books based on my selected genre` |
+| `Book lover` | see the summary of a selected book   | `I can see whether that book seems interesting to me` |
+| `Book lover` | see the title and author             | `I know how to refer to this book later` |
+| `Book lover` | see more details about the book      | `I can get an idea easily` |
+| `Book lover` | see NYTimes Best Sellers             | `I can see what are some popular books right now` |
+| `Book lover` | save some of the books               | `I can check them later` |   
+| `Book lover` | see a modal for invalid API response | `I know there was a server error` |
 
 ## Screenshots
 
