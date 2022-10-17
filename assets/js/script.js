@@ -256,6 +256,8 @@ function handleMoreBtns(event) {
 
 $('document').ready(showBooks);
 
+
+// Genre search and modal variables
 var genreSearchEntry = $("#genreSearch");
 var genreCurrent = $("#current-genre");
 var modalPopup = $("#my-modal-3");
@@ -263,6 +265,7 @@ var modalPopupBtn = $("#btnModel");
 modalPopupBtn.hide();
 
 
+// Event listener for search button
 $('#submit').on('click', function (event) {
     event.preventDefault();
 
@@ -279,6 +282,8 @@ $('#submit').on('click', function (event) {
     
 });
 
+
+//Function for the Google Books API and checks its status  
 function randomPicks() {
 
     var genreEntry = genreSearchEntry.val();
@@ -288,18 +293,22 @@ function randomPicks() {
         .then(function (response) {
             console.log(response);
             if (response.status === 200) {
+                response.json().then(function (dataB) {
+                    console.log(dataB);
+                    displayRandomPicks(dataB);
+        
+                });
+            }else {
+                var category = "HTTP Error: ";
+                var msg = "Fetch request to Google Books API: Error " + response.status;
+                showError(category, msg);
             }
-            return response.json();
 
-
-        }).then(function (dataB) {
-            console.log(dataB);
-            displayRandomPicks(dataB);
-
-        });
+        })
 
 }
 
+// Function for picking books randomly and showing on the webpage
 function displayRandomPicks(dataB) {
 
     var yourBooks = [];
@@ -307,7 +316,8 @@ function displayRandomPicks(dataB) {
 
     genreCurrent.html(genreSearchEntry.val());
 
-    
+
+    // Randomly picks part and checks duplicate 
     for (var i = 0; i < 5; i++) {
         newBook = dataB.items[Math.floor(Math.random() * dataB.items.length)];
 
