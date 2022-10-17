@@ -60,6 +60,28 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
         }
     }
 ```
+### 3. Individual container for book information
+#### Includes cover image, title, author, description using tailwind css
+```
+<div id="book-cover-container-1"
+                    class="card card-compact custom-minimum-width w-80 m-3 bg-base-100 shadow-xl">
+                    <figure><img id="book-cover-1" class="h-80 object-fill mt-2 " src="" alt="Book Cover" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 id="book-title-1" class="card-title justify-center text-center text-xl font-bold"></h2>
+                        <h3 id="book-author-1" class="card-title justify-center text-xl font-semibold"></h3>
+                        <p id="book-desc-1" class="text-base"></p>
+                        <section class="inline-flex justify-between">
+                            <div class="flex card-actions justify-start">
+                                <button id="book-save-1" class="btn btn-sm btn-primary">Save Book</button>
+                            </div>
+                            <div class="flex card-actions justify-end">
+                                <button id="book-see-more-1" class="btn btn-sm btn-primary">See More</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+```
 
 ## Technologies Used
 - HTML
@@ -76,11 +98,12 @@ Book Reco's offers a simple, easy to use interface to search for books by genre.
 [NY Times Books API](https://developer.nytimes.com/docs/books-product/1/overview)\
 [NY Times API to get Best Sellers](https://developer.nytimes.com/docs/books-product/1/routes/lists/overview.json/get)\
 [store.js library](https://github.com/marcuswestin/store.js)\
-[TBD](TBD)
+[Tailwind CSS](https://tailwindcss.com/)
+[DaisyUI](https://daisyui.com/)
 
 ## Author Links
-### LinkedIn: [Peter](TBD) - [Mehmet](https://www.linkedin.com/in/mehmet-musabeyo%C4%9Flu-788758a8/) - [Priya](https://www.linkedin.com/in/sripriya-bhikshesvaran-8520992/)
-### Github: [Peter](TBD) - [Mehmet](https://github.com/MehmetMusabeyoglu) - [Priya](https://github.com/sbhikshe)
+### LinkedIn: [Peter](https://www.linkedin.com/in/peter-kim89/) - [Mehmet](https://www.linkedin.com/in/mehmet-musabeyo%C4%9Flu-788758a8/) - [Priya](https://www.linkedin.com/in/sripriya-bhikshesvaran-8520992/)
+### Github: [Peter](https://github.com/PeterKim89) - [Mehmet](https://github.com/MehmetMusabeyoglu) - [Priya](https://github.com/sbhikshe)
 
  ## License 
  This project is licensed under the MIT License 
