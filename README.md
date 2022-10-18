@@ -33,6 +33,11 @@ Each book displayed will have 2 buttons underneath it. The 'see more' button wil
 ![Wireframe Design - Initial interface](./assets/images/BR_1.png)
 ![After retrieving books with server side API](./assets/images/BR_3.png)
 
+## Framework
+
+!["Tailwind CSS"](https://tailwindcss.com/docs/installation) was our Bootstrap alternative. Much like Bootstrap, Tailwind also uses inline css and a 12-column layout system. Tailwind is a highly customizable framework that allows users to extend or even overwrite classes. Tailwind is also more lightweight than Bootstrap. In addition, we used a Tailwind plugin ![DaisyUI](https://daisyui.com/). 
+DaisyUI includes different color schemes and premade components. This made creating components like modals, cards, and inputs very simple to make. This project currently uses CDN links to enable these frameworks, limiting their full customizability.
+
 ## User Story
 
 | As a         | I want to                            | So that   
