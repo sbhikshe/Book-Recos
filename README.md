@@ -2,7 +2,10 @@
 # A repository of book recommendations
 ## Table of Contents
 * [Description](#description)
+* [Learning Objectives](#learning-objectives)
+* [Usage](#usage)
 * [Wireframe](#wireframe)
+* [Framework](#framework)
 * [User Story](#user-story)
 * [Screenshots](#screenshots)
 * [Code Snippets](#code-snippets)
