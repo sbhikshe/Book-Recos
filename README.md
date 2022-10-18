@@ -14,6 +14,15 @@
 
 Book Reco's offers a simple, easy to use interface to search for books by genre. With Book Reco’s™, each search returns books randomly picked from the whole universe of books belonging to that genre; no repetitions, no skewing towards the popular ones which a fan had probably already read. From the list of recommended books, a book lover can see information and ratings of these books, as well as a summary.The application has been deployed to the Github Pages at [Book Recos](https://sbhikshe.github.io/Book-Recos/).
 
+## Learning Objectives
+
+- Design a clean, intuitive, and responsive ui design with an unfamiliar CSS framework
+- Research and implement various third-party, server-side APIs
+- Research and utilize new javascript libraries
+- Demonstrate the importance of a proper git work flow in a group setting
+- Objectively assess and critique other members contributions
+- Construct a final product that shows full understanding of user stories along with polish
+
 ## Usage
 
 Upon first visiting the webpage, the user should be greeted with a header with our logo, a dropdown menu to select a book genre, and 5 New York Times Best Sellers.
