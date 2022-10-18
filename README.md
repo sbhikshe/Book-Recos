@@ -38,7 +38,7 @@ Each book displayed will have 2 buttons underneath it. The 'see more' button wil
 
 ## Framework
 
-!["Tailwind CSS"](https://tailwindcss.com/docs/installation) was our Bootstrap alternative. Much like Bootstrap, Tailwind also uses inline css and a 12-column layout system. Tailwind is a highly customizable framework that allows users to extend or even overwrite classes. Tailwind is also more lightweight than Bootstrap. In addition, we used a Tailwind plugin ![DaisyUI](https://daisyui.com/). 
+["Tailwind CSS"](https://tailwindcss.com/docs/installation) was our Bootstrap alternative. Much like Bootstrap, Tailwind also uses inline css and a 12-column layout system. Tailwind is a highly customizable framework that allows users to extend or even overwrite classes. Tailwind is also more lightweight than Bootstrap. In addition, we used a Tailwind plugin [DaisyUI](https://daisyui.com/). 
 DaisyUI includes different color schemes and premade components. This made creating components like modals, cards, and inputs very simple to make. This project currently uses CDN links to enable these frameworks, limiting their full customizability.
 
 ## User Story
@@ -120,24 +120,22 @@ var requestUrlBook = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + 
 ### 4. Individual container for book information
 #### Includes cover image, title, author, description using tailwind css
 ```
-<div id="book-cover-container-1"
-                    class="card card-compact custom-minimum-width w-80 m-3 bg-base-100 shadow-xl">
-                    <figure><img id="book-cover-1" class="h-80 object-fill mt-2 " src="" alt="Book Cover" />
-                    </figure>
-                    <div class="card-body">
-                        <h2 id="book-title-1" class="card-title justify-center text-center text-xl font-bold"></h2>
-                        <h3 id="book-author-1" class="card-title justify-center text-xl font-semibold"></h3>
-                        <p id="book-desc-1" class="text-base"></p>
-                        <section class="inline-flex justify-between">
-                            <div class="flex card-actions justify-start">
-                                <button id="book-save-1" class="btn btn-sm btn-primary">Save Book</button>
-                            </div>
-                            <div class="flex card-actions justify-end">
-                                <button id="book-see-more-1" class="btn btn-sm btn-primary">See More</button>
-                            </div>
-                        </section>
-                    </div>
-                </div>
+<div id="book-cover-container-1" class="card card-compact custom-minimum-width w-80 m-3 bg-base-100 shadow-xl">
+    <figure><img id="book-cover-1" class="h-80 object-fill mt-2 " src="" alt="Book Cover" /></figure>
+    <div class="card-body">
+        <h2 id="book-title-1" class="card-title justify-center text-center text-xl font-bold"></h2>
+        <h3 id="book-author-1" class="card-title justify-center text-xl font-semibold"></h3>
+        <p id="book-desc-1" class="text-base"></p>
+        <section class="inline-flex justify-between">
+            <div class="flex card-actions justify-start">   
+                <button id="book-save-1" class="btn btn-sm btn-primary">Save Book</button>
+            </div>
+            <div class="flex card-actions justify-end">
+                <button id="book-see-more-1" class="btn btn-sm btn-primary">See More</button>
+            </div>
+        </section>
+    </div>
+</div>
 ```
 
 ### 5. Store.js library
